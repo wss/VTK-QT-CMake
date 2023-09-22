@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 设置RendererWindows 就不会弹出独立窗口
     m_vtkImageViewer2->SetRenderWindow(m_vtkOpenGlwidget->renderWindow());
     changeImagePixel();
-    m_vtkOpenGlwidget->setMinimumSize(QSize(500,500));
+    m_vtkOpenGlwidget->setMinimumSize(QSize(800,600));
 }
 
 MainWindow::~MainWindow()
@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeImagePixel()
 {
-    m_bmpReader->SetFileName("E:/learning/VTK_QT_learning/vtk_learning/VTK-QT-CMake/VTK-QT-CMake/changeImagePixel/lena.bmp");
+    m_bmpReader->SetFileName("lena.bmp");
     m_bmpReader->Update();
     int subRegion[6] = { 0,300, 0, 300, 0, 0 };  //截取0-300正方形的数据
     vtkImageIterator<unsigned char> it(m_bmpReader->GetOutput(), subRegion);

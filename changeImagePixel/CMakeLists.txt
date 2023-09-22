@@ -61,4 +61,15 @@ install(TARGETS changeImagePixel
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+if(MSVC)
+file(GLOB IMAGE_BMP "${CMAKE_SOURCE_DIR}/*.bmp")
+set(BUILD_DIR "${CMAKE_SOURCE_DIR}/build")
 
+add_custom_command(TARGET changeImagePixel POST_BUILD 
+                                        COMMAND ${CMAKE_COMMAND} -E copy
+                                       ${IMAGE_BMP} $<TARGET_FILE_DIR:changeImagePixel> 
+                                       COMMAND ${CMAKE_COMMAND} -E copy
+                                       ${IMAGE_BMP}  ${BUILD_DIR}
+)
+
+endif()
